@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "259471737523",
+    "project_id": "reseau-social-654a5",
+    "storage_bucket": "reseau-social-654a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259471737523:android:e523f4de79f27b892fe6c6",
+        "android_client_info": {
+          "package_name": "com.example.reseausocial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "259471737523-4dea4ifepnfgohkp7o685qi4j2q0f57h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBt1HK4SszqbwIxvWz2VannbCYmyme9x-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "259471737523-4dea4ifepnfgohkp7o685qi4j2q0f57h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "259471737523-6qlg7qm106oia5vqo70b60dsq3b5t2n4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.reseausocial"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
