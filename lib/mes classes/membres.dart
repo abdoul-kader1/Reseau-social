@@ -13,8 +13,13 @@ class Membres{
   DocumentReference?ref;
   String?documentid;
 
-  Membres(DocumentSnapshot snapshot){
-    print("snapshot d'un membre $snapshot");
+  Membres.fromJson(DocumentSnapshot snapshot){
+    final donnee = snapshot.data() as Map;
+    uid = donnee["uidKey"];
+    nom = donnee["nomKey"];
+    prenom = donnee["prenomKey"];
+    ref = snapshot.reference;
+    documentid = snapshot.reference.id;
   }
 
   Map<String,dynamic>Tomap(){

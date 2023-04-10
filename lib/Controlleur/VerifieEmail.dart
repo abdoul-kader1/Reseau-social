@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'acceuil.dart';
 
 class VerifiEmail extends StatefulWidget{
+
+  VerifiEmail({super.key});
+
   @override
   StateVerifiEmail  createState() =>StateVerifiEmail();
 }
