@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import '../mes classes/membres.dart';
 
 class Profil extends StatelessWidget{
+
+  Membres membres;
+
+  Profil({super.key,required this.membres});
 
   @override
   Widget build(BuildContext context) {
