@@ -6,6 +6,8 @@ import 'AnimationIcons.dart';
 
 class MaBarDeNavigation extends StatefulWidget{
 
+  String idMembres;
+  MaBarDeNavigation({super.key,required this.idMembres});
   @override
   MaBarDeNavigationState createState() => MaBarDeNavigationState();
 }
@@ -34,7 +36,7 @@ class MaBarDeNavigationState extends State<MaBarDeNavigation>{
              showModalBottomSheet(
                  context: context,
                  builder: (contexte){
-                   return Posts();
+                   return Posts(idMembre: widget.idMembres);
                  }
              );
            },

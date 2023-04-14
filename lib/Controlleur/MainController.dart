@@ -35,10 +35,7 @@ class MainControllerState extends State<MainController>{
        child: Stack(
          alignment: Alignment.center,
          children: [
-           SingleChildScrollView(
-             physics: BouncingScrollPhysics(),
-             child: donnee(),
-           ),
+           donnee(),
            Positioned(
                bottom: 0,
                child:Stack(
@@ -54,7 +51,7 @@ class MainControllerState extends State<MainController>{
                        ),
                      ),
                    ),
-                   MaBarDeNavigation()
+                   MaBarDeNavigation(idMembres: widget.membres.uid!,)
                  ],
                )
            )

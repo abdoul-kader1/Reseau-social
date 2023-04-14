@@ -2,9 +2,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import '../custom_widget/mytextfield.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../firebase/gestionnaireFirebase.dart';
 class Posts extends StatefulWidget{
 
-  Posts({super.key});
+  String idMembre;
+
+  Posts({super.key,required this.idMembre});
 
   @override
   PostsState createState() => PostsState();
@@ -69,6 +73,9 @@ class PostsState extends State<Posts>{
             ),
             SizedBox(height: 20),
             InkWell(
+              onTap: (){
+                sendPost();
+              },
               child: Container(
                 width: MediaQuery.of(context).size.width*0.8,
                 height: MediaQuery.of(context).size.width*0.13,
@@ -90,6 +97,12 @@ class PostsState extends State<Posts>{
       setState(() {
         file = File(image.path);
       });
+    }
+  }
+  sendPost(){
+    Navigator.pop(context);
+    if(file!=null && textEditingController.text!=null && textEditingController.text!=null){
+      GestionnaireFirbase().addToPost(widget.idMembre, textEditingController.text,file!);
     }
   }
 

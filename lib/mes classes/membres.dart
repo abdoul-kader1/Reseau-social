@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Membres{
+
   String?uid;
   String?nom;
   String?prenom;
@@ -19,7 +20,7 @@ class Membres{
     nom = donnee["nomKey"];
     prenom = donnee["prenomKey"];
     ref = snapshot.reference;
-    documentid = snapshot.reference.id;
+    documentid = snapshot.id;
   }
 
   Map<String,dynamic>Tomap(){

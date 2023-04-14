@@ -20,7 +20,7 @@ class _Acceuil extends State<Acceuil>{
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
+    return StreamBuilder<DocumentSnapshot>(
         stream: FirebaseFirestore.instance.collection("membres").doc(idUtilisateur).snapshots(),
         builder:(contexte,snapshot){
           if(snapshot.hasData){
