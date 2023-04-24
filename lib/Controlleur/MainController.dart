@@ -26,9 +26,9 @@ class MainControllerState extends State<MainController>{
   @override
   Widget build(BuildContext context) {
    return Scaffold(
-     appBar: AppBar(
+     /*appBar: AppBar(
        title: Text("acceuil"),
-     ),
+     ),*/
      body:Container(
        width: double.infinity,
        height:  MediaQuery.of(context).size.height,

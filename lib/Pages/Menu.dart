@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../mes classes/membres.dart';
 class Menu extends StatelessWidget{
@@ -14,10 +13,6 @@ class Menu extends StatelessWidget{
       children: [
         Text("bonjour ${membres.nom} ${membres.prenom}"),
         Text("Votre identifiant est : ${membres.uid}"),
-        ElevatedButton(
-            onPressed: (){FirebaseAuth.instance.signOut();},
-            child:Text("Se déconnecter")
-        )
       ],
     );
   }

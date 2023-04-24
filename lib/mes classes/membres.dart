@@ -19,6 +19,9 @@ class Membres{
     uid = donnee["uidKey"];
     nom = donnee["nomKey"];
     prenom = donnee["prenomKey"];
+    followers = donnee["followersKey"];
+    following = donnee["followingKey"];
+    urlimage = donnee["urlimageKey"];
     ref = snapshot.reference;
     documentid = snapshot.id;
   }
