@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as storage;
+import 'package:reseausocial/mes%20classes/membres.dart';
 import '../mes classes/Post.dart';
 
 class GestionnaireFirbase{
@@ -26,6 +27,7 @@ class GestionnaireFirbase{
         "prenomKey":prenom,
         'urlimageKey':"",
         "followersKey":[users?.uid],
+        "description":"",
         "followingKey":[]
       };
     }
@@ -81,6 +83,14 @@ class GestionnaireFirbase{
   deconnecterUser(){
     authInstance.signOut();
   }
-  
+
+  ModifierDonnerUser(Membres membres,String nom,String preNom,String description)async{
+    if( (nom!="" && nom!=null) || (preNom!="" && preNom!=null) || (description!="" && description!=null) ){
+      membres.ref!.update({"nomKey":nom,"prenomKey":preNom,"description":description});
+    }else{
+      return "impossible d'enregistrer les données Certain champ n'ont pas été remplir";
+    }
+  }
+
 
 }

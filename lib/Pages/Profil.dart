@@ -26,8 +26,15 @@ class ProfilState extends State<Profil>{
   bool get scrolled => scrollController.hasClients && scrollController.offset > 200 - kToolbarHeight;
   late bool isMe;
   final authUser = GestionnaireFirbase().authInstance.currentUser!.uid;
+  late TextEditingController leNom;
+  late TextEditingController leSurnom;
+  late TextEditingController laDescription;
+
   @override
   void initState() {
+    leNom = TextEditingController();
+    leSurnom = TextEditingController();
+    laDescription = TextEditingController();
     isMe = (authUser == widget.membres.uid);
     scrollController = ScrollController()..addListener(() {
       setState(() {
@@ -40,6 +47,9 @@ class ProfilState extends State<Profil>{
   @override
   void dispose() {
     scrollController.dispose();
+    leNom.dispose();
+    leSurnom.dispose();
+    laDescription.dispose();
     super.dispose();
   }
 
@@ -120,13 +130,16 @@ class ProfilState extends State<Profil>{
       backgroundColor: Colors.purple,
       pinned: true,
       expandedHeight: 200,
-      actions: [IconButton(onPressed:(){AlerteHelper().deconnecter(context);}, icon: Icon(Icons.settings))],
+      actions: [
+        IconButton(onPressed:(){AlerteHelper().deconnecter(context);}, icon: Icon(Icons.settings)),
+        IconButton(onPressed:(){AlerteHelper().changeProprieteUser(context, membres: widget.membres, name: leNom, surName: leSurnom, description: laDescription);}, icon: Icon(Icons.mode_outlined)),
+      ],
       flexibleSpace: FlexibleSpaceBar(
-          title: (scrolled)?Text("${widget.membres.prenom} ${widget.membres.nom}"):Container(height: 0,width: 0),
+          title: (scrolled)?Text("${widget.membres.prenom} ${widget.membres.nom}",style: TextStyle(fontSize: 17),):Container(height: 0,width: 0),
         background: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: NetworkImage("https://images.pexels.com/photos/1499327/pexels-photo-1499327.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
+              image: NetworkImage("https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(Colors.black54, BlendMode.darken)
             )
