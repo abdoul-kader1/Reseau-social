@@ -84,13 +84,8 @@ class GestionnaireFirbase{
     authInstance.signOut();
   }
 
-  ModifierDonnerUser(Membres membres,String nom,String preNom,String description)async{
-    if( (nom!="" && nom!=null) || (preNom!="" && preNom!=null) || (description!="" && description!=null) ){
-      membres.ref!.update({"nomKey":nom,"prenomKey":preNom,"description":description});
-    }else{
-      return "impossible d'enregistrer les données Certain champ n'ont pas été remplir";
-    }
+  ModifierDonnerUser(Membres membres,Map<String,dynamic>donnee)async{
+      membres.ref!.update(donnee);
   }
-
 
 }

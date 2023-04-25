@@ -71,7 +71,23 @@ class AlerteHelper{
             actions: [
               ElevatedButton(
                   onPressed: (){
-                    GestionnaireFirbase().ModifierDonnerUser(membres,name.text, surName.text,description.text);
+                    Map<String,dynamic>donnee={};
+                    if(name!=""&& name!=null){
+                      donnee["nomKey"]=name.text;
+                    }else{
+                      donnee["nomKey"]=membres.nom;
+                    }
+                    if(surName!=""&& surName!=null){
+                      donnee["prenomKey"]=surName.text;
+                    }else{
+                      donnee["prenomKey"]=membres.prenom;
+                    }
+                    if(description!=""&& description!=null){
+                      donnee["description"]=description.text;
+                    }else{
+                      donnee["description"]=membres.description;
+                    }
+                    GestionnaireFirbase().ModifierDonnerUser(membres,donnee);
                     Navigator.pop(ctx);
                     },
                   child:Text("Modifier")
