@@ -132,7 +132,7 @@ class ProfilState extends State<Profil>{
       expandedHeight: 200,
       actions: [
         IconButton(onPressed:(){AlerteHelper().deconnecter(context);}, icon: Icon(Icons.settings)),
-        IconButton(onPressed:(){AlerteHelper().changeProprieteUser(context, membres: widget.membres, name: leNom, surName: leSurnom, description: laDescription);}, icon: Icon(Icons.mode_outlined)),
+        (isMe)?IconButton(onPressed:(){AlerteHelper().changeProprieteUser(context, membres: widget.membres, name: leNom, surName: leSurnom, description: laDescription);}, icon: Icon(Icons.mode_outlined)):Container(),
       ],
       flexibleSpace: FlexibleSpaceBar(
           title: (scrolled)?Text("${widget.membres.prenom} ${widget.membres.nom}",style: TextStyle(fontSize: 17),):Container(height: 0,width: 0),

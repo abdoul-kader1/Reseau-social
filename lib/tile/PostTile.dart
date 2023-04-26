@@ -52,9 +52,9 @@ class PosTile extends StatelessWidget{
                 children: [
                   IconButton(
                       onPressed: (){
-                        GestionnaireFirbase().addOrRemoveLike(post,membre.uid!);
+                        GestionnaireFirbase().addOrRemoveLike(post,GestionnaireFirbase().authInstance.currentUser!.uid);
                       },
-                      icon: Icon((post.likes!.contains(membre.uid))?Icons.favorite:Icons.favorite_border)
+                      icon: Icon((post.likes!.contains(membre.uid))?Icons.favorite:Icons.favorite_border,color: (post.likes!.contains(membre.uid))?Colors.red:Colors.black,)
                   ),
                   Text("${post.likes!.length} likes"),
                   IconButton(

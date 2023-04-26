@@ -25,7 +25,7 @@ class GestionnaireFirbase{
         "uidKey":users?.uid,
         "nomKey":nom,
         "prenomKey":prenom,
-        'urlimageKey':"",
+        'urlimageKey':"https://static.vecteezy.com/ti/vecteur-libre/p3/7296447-icone-utilisateur-dans-le-style-plat-icone-personne-symbole-client-vectoriel.jpg",
         "followersKey":[users?.uid],
         "description":"",
         "followingKey":[]
@@ -86,6 +86,16 @@ class GestionnaireFirbase{
 
   ModifierDonnerUser(Membres membres,Map<String,dynamic>donnee)async{
       membres.ref!.update(donnee);
+  }
+
+  followUser(Membres membre ,String id,Membres membres1){
+    if(membre.followers!.contains(id)){
+      membre.ref!.update({"followersKey":FieldValue.arrayRemove([id])});
+      membres1.ref!.update({"followingKey":FieldValue.arrayRemove([membre.uid])});
+    }else{
+      membre.ref!.update({"followersKey":FieldValue.arrayUnion([id])});
+      membres1.ref!.update({"followingKey":FieldValue.arrayUnion([membre.uid])});
+    }
   }
 
 }
