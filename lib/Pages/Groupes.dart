@@ -52,7 +52,7 @@ class Groupes extends StatelessWidget{
                         subtitle: Text("${user.prenom}"),
                         trailing: TextButton(
                           onPressed: () {
-                            GestionnaireFirbase().followUser(user,GestionnaireFirbase().authInstance.currentUser!.uid,membres);
+                            GestionnaireFirbase().followUser(user,myId,membres);
                           },
                           child: (myId == user.uid)
                               ?Container(height: 0,width: 0)

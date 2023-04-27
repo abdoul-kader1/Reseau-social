@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:reseausocial/custom_widget/ProfilImage.dart';
 import 'package:reseausocial/mes%20classes/Post.dart';
@@ -9,13 +8,13 @@ import '../firebase/gestionnaireFirebase.dart';
 import '../mes classes/membres.dart';
 
 class PosTile extends StatelessWidget{
-  QueryDocumentSnapshot snapshots;
+
+  Post post;
   Membres membre;
-  PosTile({super.key,required this.snapshots,required this.membre});
+  PosTile({super.key,required this.post,required this.membre});
 
   @override
   Widget build(BuildContext context) {
-    Post post = Post(snapshots);
     return Container(
       margin: EdgeInsets.only(bottom: 5),
       child: Card(

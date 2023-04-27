@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import '../Delegate/HeaderDelegate.dart';
 import '../Modele/alerteHelper.dart';
 import '../firebase/gestionnaireFirebase.dart';
+import '../mes classes/Post.dart';
 import '../mes classes/membres.dart';
 import '../tile/PostTile.dart';
 
@@ -156,7 +157,7 @@ class ProfilState extends State<Profil>{
             if(index==document.length){
               return SizedBox(height: 100);
             }else{
-              return PosTile(snapshots: document[index], membre: widget.membres);
+              return PosTile(post: Post(document[index]), membre: widget.membres);
             }
           }
         )
