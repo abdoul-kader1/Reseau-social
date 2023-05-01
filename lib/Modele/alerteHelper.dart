@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:reseausocial/custom_widget/mytextfield.dart';
 
+import '../custom_widget/Post_Content.dart';
 import '../firebase/gestionnaireFirebase.dart';
+import '../mes classes/Post.dart';
 import '../mes classes/membres.dart';
 
 class AlerteHelper{
@@ -39,6 +41,41 @@ class AlerteHelper{
             actions: [
               ElevatedButton(onPressed: (){GestionnaireFirbase().deconnecterUser();Navigator.pop(contexte);}, child:Text("Oui")),
               ElevatedButton(onPressed: (){Navigator.pop(contexte);}, child:Text("Non")),
+            ],
+          );
+        }
+    );
+  }
+
+  ecrireUnCommentaire(BuildContext context,{required Post post,required TextEditingController commentaire,required Membres membre})async{
+    final champEntrer = Mytextfield(controller: commentaire,hint: "Ecrire un commentaire");
+    final texte = Text("Nouveau commentaire");
+    return showDialog(
+       barrierDismissible: false,
+        context: context,
+        builder: (ctx){
+          return AlertDialog(
+            actionsAlignment: MainAxisAlignment.spaceAround,
+            contentPadding: EdgeInsets.all(20),
+            title: texte,
+            content: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [Post_Content(post: post, membre: membre),champEntrer],
+              ),
+            ),
+            actions: [
+              ElevatedButton(
+                  onPressed: (){
+                    if(commentaire.text!=null && commentaire.text!=""){
+                      GestionnaireFirbase().ecrirePost(post,commentaire.text);
+                      Navigator.pop(ctx);
+                    }
+                    },
+                  child:Text("Envoyer")
+              ),
+              ElevatedButton(onPressed: (){Navigator.pop(ctx);}, child:Text("Annuler")),
             ],
           );
         }

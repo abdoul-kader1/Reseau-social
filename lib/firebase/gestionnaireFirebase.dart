@@ -98,4 +98,13 @@ class GestionnaireFirbase{
     }
   }
 
+  ecrirePost(Post post,String texte){
+    Map<String,dynamic>donnee={
+      "uidKey":authInstance.currentUser!.uid,
+      "texte":texte,
+      "date du post":DateTime.now().millisecondsSinceEpoch
+    };
+    post.ref!.update({"commentaires":FieldValue.arrayUnion([donnee])});
+  }
+
 }

@@ -2,7 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:reseausocial/custom_widget/ProfilImage.dart';
 import 'package:reseausocial/mes%20classes/Post.dart';
+import '../Modele/alerteHelper.dart';
 import '../custom_widget/DateHandler.dart';
+import '../custom_widget/Post_Content.dart';
 import '../custom_widget/paddingwidth.dart';
 import '../firebase/gestionnaireFirebase.dart';
 import '../mes classes/membres.dart';
@@ -11,8 +13,8 @@ class PosTile extends StatelessWidget{
 
   Post post;
   Membres membre;
-  PosTile({super.key,required this.post,required this.membre});
 
+  PosTile({super.key,required this.post,required this.membre});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,30 +24,7 @@ class PosTile extends StatelessWidget{
         child: PaddingWidth(
           child: Column(
             children: [
-              Row(
-                children: [
-                  ProfileImage(url: membre.urlimage!, onPressed:(){}),
-                  SizedBox(width: 20),
-                  Column(
-                    children: [Text("${membre.prenom} ${membre.nom}"),Text("${DateHandler().myDate(post.date!)}")],
-                  ),
-                ],
-              ),
-              PaddingWidth(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width*0.85,
-                    height: MediaQuery.of(context).size.width*0.85,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      image:DecorationImage(
-                          image: CachedNetworkImageProvider(post.imageUrl!),
-                        fit: BoxFit.cover
-                      )
-                    ),
-                  )
-              ),
-              Text('${post.text}'),
-              SizedBox(height: 15),
+              Post_Content(post: post, membre: membre),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -57,7 +36,7 @@ class PosTile extends StatelessWidget{
                   ),
                   Text("${post.likes!.length} likes"),
                   IconButton(
-                      onPressed: (){},
+                      onPressed: (){AlerteHelper().ecrireUnCommentaire(context, post: post, commentaire: TextEditingController(), membre: membre);},
                       icon: Icon(Icons.message)
                   ),
                   Text("${post.commentaire!.length} Commentaires"),
@@ -69,4 +48,6 @@ class PosTile extends StatelessWidget{
       ),
     );
   }
+
 }
+
