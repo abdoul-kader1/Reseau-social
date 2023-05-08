@@ -6,7 +6,7 @@ class Commentaires{
   String?text;
   String?date;
 
-  Commentaires({required Map<String,dynamic>map}){
+  Commentaires({required Map<dynamic,dynamic>map}){
     idMembre = map["uidKey"];
     text = map["texte"];
     date = DateHandler().myDate(map["date du post"]);

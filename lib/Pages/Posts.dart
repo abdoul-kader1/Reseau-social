@@ -44,49 +44,51 @@ class PostsState extends State<Posts>{
           borderRadius: BorderRadius.only(topLeft:Radius.circular(20),topRight: Radius.circular(20))
       ),
       child: Container(
-        child: Column(
-          children: [
-            Text("Ecris quelque chose"),
-            SizedBox(height: 20),
-            Mytextfield(controller: textEditingController,hint: "Ecrire un poste"),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                IconButton(
-                    onPressed:(){cameraOuGallery(ImageSource.camera);},
-                    icon: Icon(Icons.camera_alt)
-                ),
-                IconButton(
-                    onPressed:(){cameraOuGallery(ImageSource.gallery);},
-                    icon: Icon(Icons.photo_library_outlined)
-                ),
-              ],
-            ),
-            SizedBox(height: 20),
-            Container(
-              width:MediaQuery.of(context).size.width*0.4,
-              height: MediaQuery.of(context).size.width*0.4,
-              child: (file==null)?Center(
-                child: Text("Aucune photo choisir"),
-              ):Image.file(file!),
-            ),
-            SizedBox(height: 20),
-            InkWell(
-              onTap: (){
-                sendPost();
-              },
-              child: Container(
-                width: MediaQuery.of(context).size.width*0.8,
-                height: MediaQuery.of(context).size.width*0.13,
-                decoration: BoxDecoration(
-                    color: Colors.purple,
-                    borderRadius: BorderRadius.circular(20)
-                ),
-                child: Center(child: Text('Valider le post',style: TextStyle(color: Colors.white))),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Text("Ecris quelque chose"),
+              SizedBox(height: 20),
+              Mytextfield(controller: textEditingController,hint: "Ecrire un poste"),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  IconButton(
+                      onPressed:(){cameraOuGallery(ImageSource.camera);},
+                      icon: Icon(Icons.camera_alt)
+                  ),
+                  IconButton(
+                      onPressed:(){cameraOuGallery(ImageSource.gallery);},
+                      icon: Icon(Icons.photo_library_outlined)
+                  ),
+                ],
               ),
-            )
-          ],
+              SizedBox(height: 20),
+              Container(
+                width:MediaQuery.of(context).size.width*0.4,
+                height: MediaQuery.of(context).size.width*0.4,
+                child: (file==null)?Center(
+                  child: Text("Aucune photo choisir"),
+                ):Image.file(file!),
+              ),
+              SizedBox(height: 20),
+              InkWell(
+                onTap: (){
+                  sendPost();
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width*0.8,
+                  height: MediaQuery.of(context).size.width*0.13,
+                  decoration: BoxDecoration(
+                      color: Colors.purple,
+                      borderRadius: BorderRadius.circular(20)
+                  ),
+                  child: Center(child: Text('Valider le post',style: TextStyle(color: Colors.white))),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

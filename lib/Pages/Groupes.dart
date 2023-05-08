@@ -63,7 +63,7 @@ class Groupes extends StatelessWidget{
                               context,
                               MaterialPageRoute(
                                   builder: (ctx){
-                                    return Scaffold(body:Profil(membres: user),);
+                                    return Scaffold(body:Profil(membres: user));
                                   }
                               )
                           );

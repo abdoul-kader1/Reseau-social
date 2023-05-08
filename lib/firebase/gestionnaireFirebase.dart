@@ -3,12 +3,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as storage;
 import 'package:reseausocial/mes%20classes/membres.dart';
+import '../Modele/InsideNotification.dart';
 import '../mes classes/Post.dart';
 
 class GestionnaireFirbase{
   //database
   FirebaseAuth authInstance=FirebaseAuth.instance;
   FirebaseFirestore fireStoreInstance= FirebaseFirestore.instance;
+  final fireNotification = FirebaseFirestore.instance.collection("Notification");
   //storage
   final storageRef = storage.FirebaseStorage.instance.ref();
   //connexion
@@ -70,6 +72,7 @@ class GestionnaireFirbase{
       post.ref!.update({"likes":FieldValue.arrayRemove([idMembre])});
     }else{
       post.ref!.update({"likes":FieldValue.arrayUnion([idMembre])});
+      sendNotification(post.membreId!, idMembre, "A liker votre post", post.ref!, "like");
     }
   }
   
@@ -85,7 +88,7 @@ class GestionnaireFirbase{
   }
 
   ModifierDonnerUser(Membres membres,Map<String,dynamic>donnee)async{
-      membres.ref!.update(donnee);
+    membres.ref!.update(donnee);
   }
 
   followUser(Membres membre ,String id,Membres membres1){
@@ -95,6 +98,7 @@ class GestionnaireFirbase{
     }else{
       membre.ref!.update({"followersKey":FieldValue.arrayUnion([id])});
       membres1.ref!.update({"followingKey":FieldValue.arrayUnion([membre.uid])});
+      sendNotification(membre.uid!, id, "Vous suit désormais", membres1.ref!, "Follow");
     }
   }
 
@@ -102,9 +106,28 @@ class GestionnaireFirbase{
     Map<String,dynamic>donnee={
       "uidKey":authInstance.currentUser!.uid,
       "texte":texte,
-      "date du post":DateTime.now().millisecondsSinceEpoch
+      "date du post":DateTime.now().millisecondsSinceEpoch.toInt()
     };
     post.ref!.update({"commentaires":FieldValue.arrayUnion([donnee])});
+    sendNotification(post.membreId!, authInstance.currentUser!.uid, "A commenté votre post", post.ref!, "Commentaire");
+  }
+
+  sendNotification(String to,String from,String text,DocumentReference ref,String type){
+    bool seen = false;
+    int date = DateTime.now().millisecondsSinceEpoch;
+    Map<String, dynamic> map = {
+      "seen":seen,
+      "date":date,
+      "texte":text,
+      "aboutRef":ref,
+      "type":type,
+      "userId":from
+    };
+    fireNotification.doc(to).collection("inside").add(map);
+  }
+
+  luNonLu(InsideNotification refNotification){
+    refNotification.reference!.update({"seen":true});
   }
 
 }

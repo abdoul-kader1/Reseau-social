@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:reseausocial/custom_widget/mytextfield.dart';
-
 import '../custom_widget/Post_Content.dart';
 import '../firebase/gestionnaireFirebase.dart';
 import '../mes classes/Post.dart';
@@ -111,17 +109,18 @@ class AlerteHelper{
                     Map<String,dynamic>donnee={};
                     if(name!=""&& name!=null){
                       donnee["nomKey"]=name.text;
-                    }else{
+                    }else if(name==""){
                       donnee["nomKey"]=membres.nom;
                     }
                     if(surName!=""&& surName!=null){
                       donnee["prenomKey"]=surName.text;
-                    }else{
+                    }else if(surName == ""){
                       donnee["prenomKey"]=membres.prenom;
+                      print("ok");
                     }
                     if(description!=""&& description!=null){
                       donnee["description"]=description.text;
-                    }else{
+                    }else if(description == ""){
                       donnee["description"]=membres.description;
                     }
                     GestionnaireFirbase().ModifierDonnerUser(membres,donnee);

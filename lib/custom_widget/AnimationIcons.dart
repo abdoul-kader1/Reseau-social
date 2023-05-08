@@ -18,7 +18,7 @@ class AnimationIconsState extends State<AnimationIcons> with SingleTickerProvide
 
   late AnimationController animationController;
   late CurvedAnimation curvedAnimation;
-  Duration duration = Duration(milliseconds: 500);
+  Duration duration = Duration(milliseconds: 300);
   late Animation<Offset>animation;
 
   @override
